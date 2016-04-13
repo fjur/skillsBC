@@ -22,13 +22,57 @@ $(document).ready(function(){
     
   // });
 
+  function searchedMentors(mentors){
+    var searchedMentors = [];
+    var searchTerm = $('#interest').val().toLowerCase();
+    mentors.forEach(function(mentor){
+      // console.log(mentor);
+      // console.log($('#interest').val());
+      // console.log(searchTerm);
+      // console.log(mentor.specialties.includes(searchTerm));
+      var lowerCaseSpecifity = [];
+      for (var i = 0; i < mentor.specialties.length; i++) {
+        // console.log(mentor.specialties);
+        lowerCaseSpecifity.push(mentor.specialties[i].toLowerCase());
+      }
+      // console.log(lowerCaseSpecifity);
+      if (lowerCaseSpecifity.includes(searchTerm)){
+        // console.log(mentor.specialties);
+        searchedMentors.push(mentor);
+      }
+    });
+
+    contactList.empty();
+    if (searchedMentors.length === 0){
+
+    } else {
+      getMentorDetails(searchedMentors);
+        // contactList.append(contactTemplate(mentor));
+    }
+    // contactList.append(contactTemplate(mentor));
+  }
+
+
+  $('.interest-search').on('click', function(event){
+    event.preventDefault();
+    // console.log($('#interest').val());
+    // console.log("click");
+    $.ajax({
+        url: 'http://skillsbc.vansortium.com/mentors',
+        method: 'GET',
+        datatype: 'json',
+        success: searchedMentors
+    });
+
+  })
+
   function displayMentors(mentor){
       contactList.append(contactTemplate(mentor));
   }
 
   function getMentorDetails(arrayOfMentors){
     arrayOfMentors.forEach(function(mentor){
-      console.log(mentor)
+      // console.log(mentor)
       $.ajax({
         url: 'http://skillsbc.vansortium.com/mentors/' + mentor._id,
         method: 'GET',

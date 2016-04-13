@@ -97,20 +97,3 @@ get '/index' do
   @photos = Array.new
   erb :index, :layout => false
 end
-
-get '/mentor/:id' do
-  @id = params[:id]
-  # api_result = RestClient.get 'http://skillsbc.vansortium.com/mentors'
-  # (JSON.parse(api_result)).each do |mentor|
-  #   if mentor[id]==id
-  #     @mentor = mentor
-  #   else
-  #     @mentor = JSON.parse(api_result)
-  #   end
-  # end
-  erb :mentor
-end
-
-get '/map' do
-  erb :map
-end

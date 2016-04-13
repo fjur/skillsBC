@@ -13,6 +13,9 @@ require 'rest-client'
 
 require 'pry'
 require 'pg'
+require 'json'
+
+require 'handlebars_assets'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s

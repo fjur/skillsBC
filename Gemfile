@@ -12,8 +12,10 @@ gem 'puma'
 gem 'tux'
 gem 'bundler'
 gem 'pg'
+
 gem 'rest-client'
 gem 'json'
+gem 'handlebars_assets'
 
 group :development, :test do
   gem 'pry'

@@ -22,6 +22,15 @@ html, body {
 body {
   background-color: #f4f5f6;
 }
+/*
+.modal-dialog{
+  position: absolute;
+  left: 75%;
+  margin-left: -312px;
+  height: 500px;
+  top: 50%;
+  margin-top: -250px;
+}*/
 
 /* JUMBROTRON AND VIDEO */
 
@@ -192,7 +201,7 @@ img:hover{
 /* FOOTER */
 .footer {
   height: 160px;
-  background:url('/images/footer.png');
+  background:black;
 }
 
 .footer h4 {
@@ -258,7 +267,7 @@ css from plugin */
 }
 
 .container {
-  width: 85%;
+  width: 95%;
 }
 
 /* FLICKR CAROUSEL */

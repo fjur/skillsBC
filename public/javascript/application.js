@@ -1,5 +1,4 @@
 // $('#login-form').hide();
-
 $(document).ready(function() {
 
   $('#login-link').on('click',function(){

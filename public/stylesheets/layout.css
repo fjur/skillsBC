@@ -1,0 +1,444 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+}
+
+@font-face {
+  font-family: 'GeosansLight';
+  src: url('/font/GeosansLight.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Neou-Bold';
+  src: url('/font/Neou-Bold.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Neou-Thin';
+  src: url('/font/Neou-Thin.ttf')  format('truetype');
+}
+
+body {
+  background-color: #f4f5f6;
+}
+
+/* JUMBROTRON AND VIDEO */
+
+.jumbotron {
+  z-index:-101;
+  height: 450px;
+  margin: 0 auto;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  border-bottom: 5px solid #EDEFED;
+}
+
+#hero-heading {
+  color: #FFF;
+  font-size: 11em;
+  text-shadow: 1px 1px 1px #080000;
+  text-align: center;
+  display: block;
+  font-family: 'Neou-Bold', sans-serif;
+}
+
+.hero-sub {
+  font-family: 'Neou-Thin', sans-serif;
+  color: #fff;
+  text-align: center;
+  display: block;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 1px black;
+}
+
+.fa fa-viacoin{
+  font-size: 11em;
+}
+
+#video1 {
+  position: absolute;
+  height: auto;
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  z-index: -100;
+}
+
+/* SEARCH BAR */
+.logo-left {
+  float: left;
+  font-size: 28px;
+  color: #2f4f4f;
+  margin: 5px -60px;
+}
+
+.logo-left:hover {
+  color: #FF6D00;
+  transition: 1s;
+}
+
+#sticker {
+  top: 375px;
+  position: absolute;
+  width: 100%;
+  margin: -10px 0 0 0;
+  z-index: 100;
+}
+
+#sticker_results {
+  top: 0;
+  left: 0;
+  position: static;
+  z-index: 100;
+  width: 100%;
+}
+
+.search {
+  background-color: rgba(0,0,0,0.5);
+  height: 80px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  padding: 1.5em 0 0 7.5em;
+}
+
+.search2 {
+  background-color: #FFFFFE;
+  box-shadow: 2px 2px #EFEFEF;
+  height: 80px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  padding: 1.5em 0 0 7.5em;
+}
+
+.search-link a{
+  text-decoration: none;
+}
+
+.search-link a:hover {
+  text-decoration: none;
+}
+
+
+.input-group-addon {
+  border-radius: 0%;
+}
+
+#submit {
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-size: 1.25em;
+  background-color: #ff6d00;
+  border: none;
+  border-radius: 0%;
+  width: 8em;
+  height: 40px;
+}
+
+#submit:hover {
+  background-color: #FFAB00;
+  transition: 1s;
+}
+
+.top_space {
+  margin-top: 85px;
+  margin-left: 80px;
+}
+
+/* ROW */
+#result_search{
+font-family: 'GeosansLight', sans-serif;
+font-weight: 600;
+}
+
+.top-cities{
+  color: #565A5C;
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.top-cities-sub{
+  color: #565A5C;
+  font-weight: 900;
+  font-size: 24px;
+  text-align: center;
+}
+
+img {
+  padding: 8px;
+  width: 100%;
+  height: 350px;
+}
+
+img:hover{
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  transition: 1s;
+}
+
+.no-padding {
+   padding: 0;
+   margin: 0 !important;
+}
+
+/* FOOTER */
+.footer {
+  height: 160px;
+  background:url('/images/footer.png');
+}
+
+.footer h4 {
+  font-family: 'Neou-Bold', sans-serif;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+}
+
+.footer a{
+  color: #fff;
+}
+
+.footer a:hover{
+  color: #FFAAAA;
+}
+
+.social-media {
+  text-align: center;
+}
+
+.social-media li {
+  list-style: none;
+  display: inline;
+  text-align: center;
+  padding: 8px;
+}
+
+.hr-footer {
+  width: 25%;
+}
+
+.ui-autocomplete {
+  height: auto;
+  max-height: 200px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#location {
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-size: 1.25em;
+  border-radius: 0%;
+  height: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* GOOGLE MAP */
+/* important used on #wn2 height to override
+css from plugin */
+#wn2 {
+  height: 370px !important;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  position: relative;
+  }
+
+.infowindow-markup {
+  z-index: 1000;
+  position: relative;
+}
+
+.container {
+  width: 85%;
+}
+
+/* FLICKR CAROUSEL */
+.img_flickr {
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.carousel-control.left, .carousel-control.right {
+  background: none !important;
+  filter: progid: none !important;
+  outline: 0;
+}
+
+#carousel_container {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 45px;
+}
+
+.carousel-control {
+  width: 5%;
+}
+
+.carousel img {
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 250px;
+  max-width: none;
+}
+
+.img_cities {
+  padding: 8px;
+  width: 100%;
+  position: relative;
+  height: 350px;
+}
+
+h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+  text-shadow: 0.5px 0.5px 0 #000;
+  position: absolute;
+  bottom: 45%;
+  width: 100%;
+  text-align: center;
+}
+
+/* WEATHER */
+.weather div{
+  display: inline-block;
+  position: relative;
+}
+
+.avg-high {
+  color: red;
+}
+
+.avg-low {
+  color: blue;
+}
+
+.avg-precipitation {
+  color: #669999;
+}
+
+.avg-humidity {
+  color: #7A9F35;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+  z-index: -10;
+  margin: 0 auto;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
+  font-size: 19px;
+}
+
+table th {
+  font-weight: 900;
+  font-family: 'Neou-Bold', sans-serif;
+}
+
+.weather-widget td{
+  font-size: 21px;
+}
+
+.when-to-visit {
+  text-align :left;
+  font-size: 16px;
+}
+
+.when-to-visit-months {
+  text-align: left;
+}
+
+#months {
+  font-size: 18px;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
+}
+
+/* CITY */
+.line-divider {
+  padding-top: 100px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.city-info li {
+  list-style: none;
+  font-size: 18px;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
+}
+
+.city-info ul {
+  padding: 0;
+}
+
+.side-header {
+  font-size: 17px;
+}
+
+/* Responsive layout */
+
+@media screen and (max-width: 700px) {
+  #hero-heading {
+    font-size: 5.1em;
+  }
+  #location {
+    text-align: center;
+    margin-left: -100px;
+  }
+  #submit {
+    margin-left: -100px;
+    width: 6.3em;
+  }
+
+
+
+  #result_search {
+    font-size: 0.6em;
+    margin-left: -55px;
+  }
+
+  #wn2 {
+    width: 100%;
+    height: 250px !important;
+  }
+
+  .container {
+    width: 99%;
+  }
+
+  img {
+    height: 250px;
+    width: 100%;
+  }
+
+  th:nth-child(odd), td:nth-child(odd){
+    display: none;
+  }
+
+  th {
+    font-size: 15px;
+  }
+
+  td{
+    font-size: 14px;
+  }
+  #search-logo {
+    display: none;
+  }
+
+
+}

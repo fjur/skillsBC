@@ -13,7 +13,6 @@ helpers do
       User.find(session[:creating_user]);
     end
   end
-
 end
 
 get '/' do
@@ -24,6 +23,8 @@ get '/' do
     erb :index
   end
 end
+
+
 
 get '/login' do
   if current_user
@@ -91,7 +92,6 @@ post '/signup' do
   puts @user
   redirect '/signup/interests'
 end
-
 
 get '/index' do
   @photos = Array.new

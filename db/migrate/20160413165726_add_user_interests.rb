@@ -1,7 +1,7 @@
 class AddUserInterests < ActiveRecord::Migration
   def change
     create_table :interests do |t|
-    t.references :users, index: true
+    t.references :user, index: true
     t.boolean :Rails, null: false, default: false
     t.boolean :React, null: false, default: false
     t.boolean :Ember, null: false, default: false

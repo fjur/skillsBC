@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160413165726) do
 
   create_table "interests", force: :cascade do |t|
-    t.integer "users_id"
+    t.integer "user_id"
     t.boolean "Rails",            default: false, null: false
     t.boolean "React",            default: false, null: false
     t.boolean "Ember",            default: false, null: false
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20160413165726) do
     t.boolean "Matlab",           default: false, null: false
   end
 
-  add_index "interests", ["users_id"], name: "index_interests_on_users_id"
+  add_index "interests", ["user_id"], name: "index_interests_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

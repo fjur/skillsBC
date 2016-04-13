@@ -1,0 +1,43 @@
+
+.jumbotron {
+  height:100%;
+  width:100%
+  z-index:-101;
+  margin: 0 auto;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  border-right: 5px solid #EDEFED;
+}
+
+#hero-heading {
+  color: #FFF;
+  font-size: 9em;
+  text-shadow: 1px 1px 1px #080000;
+  text-align: center;
+  display: block;
+  font-family: 'Neou-Bold', sans-serif;
+  top: 50%;
+}
+
+#video-1 {
+  position: absolute;
+  height: auto;
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  left: 5%;
+  top: 5%;*/
+  -webkit-transform: translate3d(-5%, -5%, 0);
+  transform: translate3d(-5%, -5%, 0);
+  z-index: -100;
+}
+
+.fa fa-hand-spock-o{
+  font-size: 11em;
+}
+
+
+#login-form {
+  display: none;
+}

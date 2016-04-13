@@ -8,6 +8,9 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 
+require 'json'
+require 'rest-client'
+
 require 'pry'
 require 'pg'
 

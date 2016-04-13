@@ -10,7 +10,10 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+gem 'bundler'
 gem 'pg'
+gem 'rest-client'
+gem 'json'
 
 group :development, :test do
   gem 'pry'

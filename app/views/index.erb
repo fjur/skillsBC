@@ -17,11 +17,19 @@
   <link href="/stylesheets/layout.css" rel="stylesheet">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
+  <style>
+      #map {
+          height: 20em;
+          margin: auto;
+          margin-bottom: 25px;
+      }
+  </style>
+
 <!-- scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" type="text/javascript"></script>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>  
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="/javascript/application.js" type="text/javascript"></script>
 
@@ -54,7 +62,7 @@
                       <div class="ui-widget">
                         <label class="sr-only" for="location">Location</label>
                         <input class="form-control" id="location" name="location"
-                          placeholder= "Where would you like to go?"
+                          placeholder= "What would you like to learn?"
                           type="text">
                       </div>
                     </div>
@@ -79,29 +87,21 @@
 <div class="container">
 
   <div class="top_space">
-    <h1><span id="result_search">text</span></h1>
+    <h1><span id="result_search"></span></h1>
   </div>
 <div class="container">
+  <div class="row">
+    <!-- use this for map -->
+    <div class="col-md-12 col-sm-12">
+        <div id="map"></div>
+        <div id="mentor_data" style="display:none;" class="class-md-12 class-sm-12">
+          <div class="col-md-8 col-sm-8" id="mentor_details">
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+          </div>
+
+        </div>
     </div>
   </div>
-</div>
-
   <div class="row" id="contact-list">
   </div>
 </div>
@@ -121,7 +121,7 @@
   <h4>&copy; Mentorify</h4>
   </div>
   <script type="text/handlebars-template" id="contact-template">
-      <div class="col-sm-6 col-md-4 contact " style="height: 430px; max-height: 430px;" data-contact-id={{_id}}>
+      <div class="col-sm-6 col-md-4 contact " style="height: 430px; max-height: 430px; margin-bottom:10px;" data-contact-id={{_id}}>
         <div class="thumbnail">
           <img src={{avatar_url}} style="max-height: 75%; max-width: 75%; border-radius: 50%;" alt="...">
           <div class="caption">
@@ -129,11 +129,97 @@
             <p>Phone number: {{phone_number}}</p>
             <p>Email: {{email}}</p>
             <p style="overflow-x: scroll">Specialities: {{specialties}}</p>
-            <p><a href="#" class="btn btn-primary contact-mentor" data-toggle="modal" data-target="#myModal" role="button">Contact</a> 
+            <p><a href="#" class="btn btn-primary contact-mentor" data-toggle="modal" data-target="#myModal" role="button">Contact</a>
       </div>
     </div>
   </div>
   </script>
+
+  <script>
+          function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {
+                  center: {
+                      lat: 49.2827,
+                      lng: 123.1207
+                  },
+                  zoom: 6
+              });
+              var infoWindow = new google.maps.InfoWindow({map: map});
+
+              // Try HTML5 geolocation.
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function (position) {
+                      var pos = {
+                          lat: position.coords.latitude,
+                          lng: position.coords.longitude
+                          // lat: 49.2827,
+                          // lng: 123.1207
+                      };
+                      map.setCenter(pos);
+
+                      // custom markers var contentString = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">Uluru</h1><div id="bodyContent"><p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large sandstone rock formation
+                      // in the southern part of the Northern T' +         'erritory, central Australia. It lies 335&#160;km (208&#160;mi) south west of the nearest large town, Alice Springs; 450&#160;km (280&#160;mi) by road. Kata Tjuta and Uluru are the two major
+                      // features of the Uluru - Kata Tjuta National Park. Uluru is s' +         'acred to the Pitjantjatjara and Yankunytjatjara, the Aboriginal people of the area. It has many springs, waterholes, rock caves and ancient paintings. Uluru is listed as a
+                      // World Heritage Site.</p><p>Attribution: Uluru, <a href="https://en.wikipedia.o' +         'rg/w/index.php?title=Uluru&oldid=297882194">https://en.wikipedia.org/w/index.php?title=Uluru</a> (last visited June 22, 2009).</p></div></div>';
+                      //
+                      // var infowindow = new google.maps.InfoWindow({content: contentString});
+
+                      var marker = new google.maps.Marker({position: pos, map: map, title: 'You'});
+                      marker.addListener('click', function () {
+                          infowindow.open(map, marker);
+                      });
+
+
+                      function printMentors(mentor){
+                          // custom markers
+
+                          if ((mentor.location[0] != 0.0) && (mentor.location[1] != 0)){
+                              var contentString = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'+mentor.first_name+' '+mentor.last_name+'</h1><div id="bodyContent"><p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large sandstone rock formation in the southern part of the Northern T' +         'erritory, central Australia. It lies 335&#160;km (208&#160;mi) south west of the nearest large town, Alice Springs; 450&#160;km (280&#160;mi) by road. Kata Tjuta and Uluru are the two major features of the Uluru - Kata Tjuta National Park. Uluru is s' +         'acred to the Pitjantjatjara and Yankunytjatjara, the Aboriginal people of the area. It has many springs, waterholes, rock caves and ancient paintings. Uluru is listed as a World Heritage Site.</p><p>Attribution: Uluru, <a href="https://en.wikipedia.o' +         'rg/w/index.php?title=Uluru&oldid=297882194">https://en.wikipedia.org/w/index.php?title=Uluru</a> (last visited June 22, 2009).</p></div></div>';
+                              var infowindow = new google.maps.InfoWindow({content: contentString});
+                              var pos = {
+                                  lat: mentor.location[0],
+                                  lng: mentor.location[1]
+                              };
+
+                              var marker = new google.maps.Marker({position: pos, map: map, title: 'You'});
+                              marker.addListener('click', function () {
+                                  infowindow.open(map, marker);
+                              });
+
+                          }
+                      };
+                      function getMentorDetails(arrayOfMentors){
+                         arrayOfMentors.forEach(function(mentor){
+                           $.ajax({
+                             url: 'http://skillsbc.vansortium.com/mentors/' + mentor._id,
+                             method: 'GET',
+                             datatype: 'json',
+                             success: printMentors
+                           });
+                         })
+                       }
+                      $.ajax({url: 'http://skillsbc.vansortium.com/mentors', method: 'GET', datatype: 'json', success: getMentorDetails});
+
+
+
+                      // end
+                  }, function () {
+                      handleLocationError(true, infoWindow, map.getCenter());
+                  });
+              } else {
+                  // Browser doesn't support Geolocation
+                  handleLocationError(false, infoWindow, map.getCenter());
+              }
+          }
+
+          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+              infoWindow.setPosition(pos);
+              infoWindow.setContent(browserHasGeolocation
+                  ? 'Error: The Geolocation service failed.'
+                  : 'Error: Your browser doesn\'t support geolocation.');
+          }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXqw3qCyyY0sHDKUltgzXgXvjyyazzGUY&callback=initMap"></script>
 
 
 

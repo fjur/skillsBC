@@ -60,18 +60,18 @@
                   <div class="col-md-8 col-sm-6 col-xs-9 col-md-offset-2 no-padding">
                     <div class="form-group">
                       <div class="ui-widget">
-                        <label class="sr-only" for="location">Location</label>
-                        <input class="form-control" id="location" name="location"
-                          placeholder= "What would you like to learn?"
+                        <label class="sr-only" for="interest">Interest</label>
+                        <input class="form-control" id="interest" name="interest"
+                          placeholder= "What are your interests?"
                           type="text">
                       </div>
                     </div>
                   </div>
 
                   <div class="col-md-3 col-sm-3 col-xs-3">
-                    <button class="btn btn-default btn-primary" id="submit"
-                    type="submit">Search</button>
-                  </div>
+                    <button class="btn btn-default btn-primary interest-search" id="submit"
+                   type="submit">Search</button>
+                 </div>
                 </form>
               </div>
             </div>
@@ -129,7 +129,7 @@
             <p>Phone number: {{phone_number}}</p>
             <p>Email: {{email}}</p>
             <p style="overflow-x: scroll">Specialities: {{specialties}}</p>
-            <p><a href="#" class="btn btn-primary contact-mentor" data-toggle="modal" data-target="#myModal" role="button">Contact</a>
+            <p><a href="#" id="email-mentor" class="btn btn-primary contact-mentor" data-toggle="modal" data-target="#myModal" role="button">Contact</a>
       </div>
     </div>
   </div>

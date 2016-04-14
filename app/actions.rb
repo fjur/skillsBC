@@ -38,7 +38,7 @@ post '/login' do
   @user = User.find_by(email: params[:email])
   if @user && @user.email == params[:email]
     session[:user_id] = @user.id
-    redirect '/'
+    redirect '/index'
   else
     erb :login
   end
@@ -60,57 +60,39 @@ end
 #   erb :signup
 # end
 
-get '/signup/interests' do
-  if creating_user
-    erb :interests
-  else
-    redirect '/'
-  end
-end
+# get '/signup/interests' do
+#   if creating_user
+#     erb :interests
+#   else
+#     redirect '/'
+#   end
+# end
 
-post '/signup/interests' do
-  if creating_user
-    @user = User.find(session[:creating_user])
-    # binding.pry
-    @interest = Interest.create()
-    @interest.user_id = @user.id
-    @interest.save
-    # @interest = @user.interest.create(params)
-    # @interest.update
-    session[:user_id] = @user.id
-    session[:creating_user] = nil
-    redirect '/'
-  else
-    redirect '/'
-  end
-end
+# post '/signup/interests' do
+#   if creating_user
+#     @user = User.find(session[:creating_user])
+#     # binding.pry
+#     @interest = Interest.create()
+#     @interest.user_id = @user.id
+#     @interest.save
+#     # @interest = @user.interest.create(params)
+#     # @interest.update
+#     session[:user_id] = @user.id
+#     session[:creating_user] = nil
+#     redirect '/'
+#   else
+#     redirect '/'
+#   end
+# end
 
 post '/signup' do
   @user = User.create(params);
   # session[:user_id] = @user.id
   session[:creating_user] = @user.id
-  puts @user
-  redirect '/signup/interests'
+  redirect '/index'
 end
 
 get '/index' do
   @photos = Array.new
   erb :index, :layout => false
-end
-
-get '/mentor/:id' do
-  @id = params[:id]
-  # api_result = RestClient.get 'http://skillsbc.vansortium.com/mentors'
-  # (JSON.parse(api_result)).each do |mentor|
-  #   if mentor[id]==id
-  #     @mentor = mentor
-  #   else
-  #     @mentor = JSON.parse(api_result)
-  #   end
-  # end
-  erb :mentor
-end
-
-get '/map' do
-  erb :map
 end

@@ -1,101 +1,64 @@
 $(document).ready(function(){
 
-
-  var contactSource = $('#contact-template').html();
-  var contactTemplate = Handlebars.compile(contactSource);
+  var mentorSource = $('#contact-template').html();
+  var mentorTemplate = Handlebars.compile(mentorSource);
   var contactList = $('#contact-list');
+  var allMentors;
+  var allMentorsSpecific = [];
 
-  // function displayMentors(array_of_mentors){
-  //   array_of_mentors.forEach(function(mentor){
-  //     // console.log(mentor);
-  //     // console.log(contactList);
+  //called upon load to store the json api data
+  $.ajax({
+    url: 'http://skillsbc.vansortium.com/mentors',
+    method: 'GET',
+    datatype: 'json',
+    success: getMentorDetails
+  });
 
-  //     contactList.append(contactTemplate(mentor));
-
-  //   });
-  // }
-
-
-  // $('#contact-list').on('click', 'a.contact-mentor', function() {
-  //   event.preventDefault();
-  //   var mentor = $(this).parent()[0];
-    
-  // });
-
-  function searchedMentors(mentors){
-    var searchedMentors = [];
-    var searchTerm = $('#interest').val().toLowerCase();
-    mentors.forEach(function(mentor){
-      // console.log(mentor);
-      // console.log($('#interest').val());
-      // console.log(searchTerm);
-      // console.log(mentor.specialties.includes(searchTerm));
-      var lowerCaseSpecifity = [];
-      for (var i = 0; i < mentor.specialties.length; i++) {
-        // console.log(mentor.specialties);
-        lowerCaseSpecifity.push(mentor.specialties[i].toLowerCase());
-      }
-      // console.log(lowerCaseSpecifity);
-      if (lowerCaseSpecifity.includes(searchTerm)){
-        // console.log(mentor.specialties);
-        searchedMentors.push(mentor);
-      }
-    });
-
-    contactList.empty();
-    if (searchedMentors.length === 0){
-
-    } else {
-      getMentorDetails(searchedMentors);
-        // contactList.append(contactTemplate(mentor));
-    }
-    // contactList.append(contactTemplate(mentor));
-  }
-
-
-  $('.interest-search').on('click', function(event){
-    event.preventDefault();
-    // console.log($('#interest').val());
-    // console.log("click");
-    $.ajax({
-        url: 'http://skillsbc.vansortium.com/mentors',
-        method: 'GET',
-        datatype: 'json',
-        success: searchedMentors
-    });
-
-  })
-
-  function displayMentors(mentor){
-      contactList.append(contactTemplate(mentor));
-  }
-
+  //called after initial API to get more specific details on mentors
   function getMentorDetails(arrayOfMentors){
+    allMentors = arrayOfMentors
     arrayOfMentors.forEach(function(mentor){
-      // console.log(mentor)
       $.ajax({
         url: 'http://skillsbc.vansortium.com/mentors/' + mentor._id,
         method: 'GET',
         datatype: 'json',
-        success: displayMentors
+        success: function(mentor){
+          allMentorsSpecific.push(mentor);
+          displayMentor(mentor);
+        }
       });
     })
   }
 
-  // $.ajax(function(){
-  //   url: 'skillsbc.vansortium.com/mentors/570e036b7581ece3b767a417',
-  //   method: 'GET',
-  //   datatype: 'JSON',
-  //   success: display_mentors
-  // });
+  //function to use handlbare template to display mentors
+  function displayMentor(mentor){
+      contactList.append(mentorTemplate(mentor));
+  }
 
-  $.ajax({
-      url: 'http://skillsbc.vansortium.com/mentors',
-      method: 'GET',
-      datatype: 'json',
-      success: getMentorDetails
+  $('.interest-search').on('click', function(event){
+    event.preventDefault();
+    var searchedMentors = [];
+    var searchTerm = $('#interest').val().toLowerCase();
+    var lowerCaseSpecifity = [];
+
+    allMentorsSpecific.forEach(function(mentor){
+      //conversion of values to lowercase
+      for (var i = 0; i < mentor.specialties.length; i++) {
+        lowerCaseSpecifity.push(mentor.specialties[i].toLowerCase());
+      }
+      //check if array of specifications includes case insensite interest
+      if (lowerCaseSpecifity.includes(searchTerm)){
+        searchedMentors.push(mentor);
+      }
     });
-
-
+    contactList.empty();
+    if (searchedMentors.length === 0){
+      $("#result_search").text("No mentors");
+    } else {
+      searchedMentors.forEach(function(mentor){
+        displayMentor(mentor);
+      });
+    }
+  });
 
 });
